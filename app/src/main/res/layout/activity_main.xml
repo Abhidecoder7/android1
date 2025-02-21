@@ -13,7 +13,6 @@
         android:padding="20dp"
         android:background="@android:color/white">
 
-        <!-- Show In-App Notification Button -->
         <Button
             android:id="@+id/btnShowInApp"
             android:layout_width="wrap_content"
@@ -23,10 +22,8 @@
             android:backgroundTint="#009688"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            android:layout_marginTop="12dp"
-            android:contentDescription="Button to show in-app notifications" />
+            android:layout_marginTop="12dp" />
 
-        <!-- Show App Inbox Button -->
         <Button
             android:id="@+id/btn_show_inbox"
             android:layout_width="wrap_content"
@@ -36,10 +33,8 @@
             android:layout_marginTop="12dp"
             android:backgroundTint="#3F51B5"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:contentDescription="Button to open App Inbox" />
+            android:textSize="16sp" />
 
-        <!-- Create User Profile Button -->
         <Button
             android:id="@+id/btnCreate"
             android:layout_width="wrap_content"
@@ -49,10 +44,8 @@
             android:backgroundTint="#4CAF50"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            android:layout_marginTop="12dp"
-            android:contentDescription="Button to create a user profile" />
+            android:layout_marginTop="12dp" />
 
-        <!-- Update User Profile Button -->
         <Button
             android:id="@+id/btnUpdate"
             android:layout_width="wrap_content"
@@ -62,10 +55,8 @@
             android:backgroundTint="#FFC107"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            android:layout_marginTop="12dp"
-            android:contentDescription="Button to update the user profile" />
+            android:layout_marginTop="12dp" />
 
-        <!-- Fetch CleverTap Native Display Button -->
         <Button
             android:id="@+id/btn_fetch_native_display"
             android:layout_width="wrap_content"
@@ -75,16 +66,13 @@
             android:backgroundTint="#FF9800"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
-            android:layout_marginTop="12dp"
-            android:contentDescription="Button to fetch CleverTap native display" />
+            android:layout_marginTop="12dp" />
 
-        <!-- Scrollable Container for CleverTap Native Display -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fillViewport="true"
-            android:contentDescription="Native Display Container">
+            android:fillViewport="true">
 
             <LinearLayout
                 android:id="@+id/native_display_container"
@@ -94,10 +82,17 @@
                 android:elevation="2dp"
                 android:orientation="vertical"
                 android:padding="10dp">
-
-                <!-- Native Display content will be dynamically added here -->
             </LinearLayout>
         </ScrollView>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:layout_marginTop="16dp"/>
 
     </LinearLayout>
 </ScrollView>
