@@ -8,12 +8,9 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <!-- Recommended so that CleverTap knows when to attempt a network call -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
-<!--    //permission for lat,long-->
-
+    <!-- Permissions for location access -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
 
     <application
         android:name="com.clevertap.android.sdk.Application"
@@ -36,7 +33,7 @@
             </intent-filter>
         </activity>
 
-        <!-- New Account CleverTap Credentials -->
+        <!-- CleverTap Credentials -->
         <meta-data
             android:name="CLEVERTAP_ACCOUNT_ID"
             android:value="TEST-W6Z-8W9-8K7Z"/>
@@ -44,51 +41,62 @@
             android:name="CLEVERTAP_TOKEN"
             android:value="TEST-c0b-160"/>
 
-
-<!--       Old Credential Account -->
-<!--        <meta-data-->
-<!--            android:name="CLEVERTAP_ACCOUNT_ID"-->
-<!--            android:value="TEST-ZWW-RZ9-8K7Z"/>-->
-<!--        <meta-data-->
-<!--            android:name="CLEVERTAP_TOKEN"-->
-<!--            android:value="TEST-c12-001"/>-->
-
         <!-- Use Google AD ID for User Identification (Ensure GDPR Compliance) -->
         <meta-data
             android:name="CLEVERTAP_USE_GOOGLE_AD_ID"
             android:value="1"/>
 
-        <!-- Replace with your FCM Sender ID -->
-        <meta-data android:name="FCM_SENDER_ID" android:value="id:154997575616"/>
+        <!-- FCM Sender ID -->
+        <meta-data android:name="FCM_SENDER_ID" android:value="154997575616"/>
 
-        <!--    <application-->
-<!--        android:label="@string/app_name"-->
-<!--        android:icon="@drawable/ic_launcher"-->
-<!--        android:name="com.clevertap.android.sdk.Application">-->
 
-<!--    //meta data for splash screen-->
+
+
+        <!-- CleverTap Push Notification Service -->
+<!--        <service-->
+<!--            android:name="com.clevertap.android.sdk.pushnotification.fcm.FcmMessageListenerService"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.google.firebase.MESSAGING_EVENT"/>-->
+<!--            </intent-filter>-->
+<!--        </service>-->
+
+
+
+        <!-- Custom FCM Message Listener Service -->
+        <service
+            android:name=".MyFcmMessageListenerService"
+            android:exported="false"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <!-- Exclude certain activities from CleverTap In-App Messages -->
         <meta-data
             android:name="CLEVERTAP_INAPP_EXCLUDE"
             android:value="YourSplashActivity1, YourSplashActivity2" />
 
 
-
-        <service
-            android:name="com.clevertap.android.sdk.pushnotification.fcm.FcmMessageListenerService"
+<!--        //deep link-->
+        <activity
+            android:name=".SecondActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-            </intent-filter>
-        </service>
 
-        <service
-            android:name=".MyFcmMessageListenerService"
-            android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Define the scheme, host, and path -->
+                <data android:scheme="abhi" android:host="www.example.com" android:path="/openSecondActivity"/>
             </intent-filter>
-        </service>
+        </activity>
+<!--        abhi://www.example.com/openSecondActivity-->
 
     </application>
+
+
 
 </manifest>
