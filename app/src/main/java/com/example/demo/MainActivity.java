@@ -19,16 +19,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.clevertap.android.pushtemplates.PushTemplateNotificationHandler;
 import com.clevertap.android.sdk.CTInboxListener;
 import com.clevertap.android.sdk.CleverTapAPI;
 import com.clevertap.android.sdk.displayunits.DisplayUnitListener;
 import com.clevertap.android.sdk.displayunits.model.CleverTapDisplayUnit;
 import com.clevertap.android.sdk.displayunits.model.CleverTapDisplayUnitContent;
+import com.clevertap.android.sdk.interfaces.NotificationHandler;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements CTInboxListener, DisplayUnitListener {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -76,6 +85,21 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
             clevertapDefaultInstance.setDisplayUnitListener(this);
             clevertapDefaultInstance.setCTNotificationInboxListener(this);
             clevertapDefaultInstance.initializeInbox();
+
+            // Add Push Template Notification Handler
+            CleverTapAPI.setNotificationHandler((NotificationHandler) new PushTemplateNotificationHandler());
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+
+        // Handle CleverTap push notification click
+        CleverTapAPI clevertapInstance = CleverTapAPI.getDefaultInstance(this);
+        if (clevertapInstance != null) {
+            clevertapInstance.pushNotificationClickedEvent(intent.getExtras());
         }
     }
 
@@ -84,14 +108,18 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
         btnUpdate.setOnClickListener(v -> updateUserProfile());
         btnShowInApp.setOnClickListener(v -> triggerInAppNotification());
         btnShowInbox.setOnClickListener(v -> showAppInbox());
-
         Button second = findViewById(R.id.second_bt);
         second.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SecondActivity.class);
             startActivity(intent);
         });
+        Button inboxButton = findViewById(R.id.inboxButton);
+        inboxButton.setOnClickListener(v->{
+            Intent customIntent = new Intent(MainActivity.this,CustomInboxActivity.class);
+            startActivity(customIntent);
+        });
+        // Set click listener to open CustomInboxActivity
     }
-
 
     private void requestPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -133,7 +161,6 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
         clevertapDefaultInstance.onUserLogin(profile);
         showToast("User Profile Created!");
     }
-
 
 
     private void updateUserProfile() {
@@ -290,5 +317,7 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
     public void inboxMessagesDidUpdate() {
         Log.d(TAG, "Inbox Messages Updated");
     }
+
+
 
 }

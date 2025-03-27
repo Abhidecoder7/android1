@@ -33,6 +33,13 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".CustomInboxActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+
+        <!--        <activity android:name=".CustomInbox"/>-->
+
         <!-- CleverTap Credentials -->
         <meta-data
             android:name="CLEVERTAP_ACCOUNT_ID"
@@ -60,8 +67,6 @@
 <!--                <action android:name="com.google.firebase.MESSAGING_EVENT"/>-->
 <!--            </intent-filter>-->
 <!--        </service>-->
-
-
 
         <!-- Custom FCM Message Listener Service -->
         <service
