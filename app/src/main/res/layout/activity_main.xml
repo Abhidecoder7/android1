@@ -1,148 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@android:color/darker_gray">
+    android:padding="24dp"
+    android:orientation="vertical"
+    android:gravity="top">
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/nameInput"
+        android:hint="Enter Name"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:background="@android:drawable/edit_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="20dp"
-        android:background="@android:color/white">
+        android:layout_height="wrap_content" />
 
+    <EditText
+        android:id="@+id/emailInput"
+        android:hint="Enter Email"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginTop="16dp"
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-        <!-- Name Input -->
-        <EditText
-            android:id="@+id/etName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Name"
-            android:padding="12dp"
-            android:background="@android:drawable/editbox_background"
-            android:textSize="16sp"
-            android:layout_marginTop="12dp" />
-
-        <!-- Identity Input -->
-        <EditText
-            android:id="@+id/etIdentity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Identity"
-            android:padding="12dp"
-            android:background="@android:drawable/editbox_background"
-            android:textSize="16sp"
-            android:layout_marginTop="12dp" />
-
-        <!-- Email Input -->
-        <EditText
-            android:id="@+id/etEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Email"
-            android:inputType="textEmailAddress"
-            android:padding="12dp"
-            android:background="@android:drawable/editbox_background"
-            android:textSize="16sp"
-            android:layout_marginTop="12dp" />
-
-        <!-- Contact Input -->
-        <EditText
-            android:id="@+id/etContact"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Contact"
-            android:inputType="phone"
-            android:padding="12dp"
-            android:background="@android:drawable/editbox_background"
-            android:textSize="16sp"
-            android:layout_marginTop="12dp" />
-
-        <!-- Buttons -->
-        <Button
-            android:id="@+id/btnCreate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="OnUserLogin"
-            android:padding="12dp"
-            android:backgroundTint="#009688"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:layout_marginTop="12dp" />
-
-        <Button
-            android:id="@+id/btnUpdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="PushProfile"
-            android:padding="12dp"
-            android:backgroundTint="#009688"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:layout_marginTop="12dp" />
-
-        <Button
-            android:id="@+id/second_bt"
-            android:layout_width="378dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#009688"
-            android:padding="12dp"
-            android:text="Second"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/btnShowInApp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Show In-App Notification"
-            android:padding="12dp"
-            android:backgroundTint="#009688"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:layout_marginTop="12dp" />
-        <Button
-            android:id="@+id/inboxButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Custom Inbox"
-            android:padding="12dp"/>
-
-        <Button
-            android:id="@+id/btn_show_inbox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Show App Inbox"
-            android:padding="12dp"
-            android:backgroundTint="#009688"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:layout_marginTop="12dp" />
-
-<!--        <Button-->
-<!--            android:id="@+id/btn_custom_inbox"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Custom Inbox"-->
-<!--            android:padding="12dp"-->
-<!--            android:backgroundTint="#3F51B5"-->
-<!--            android:textColor="#FFFFFF"-->
-<!--            android:textSize="16sp"-->
-<!--            android:layout_marginTop="12dp" />-->
-
-        <!-- ViewPager for Carousel -->
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginTop="16dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:overScrollMode="never" />
-    </LinearLayout>
-
-
-</ScrollView>
+    <Button
+        android:id="@+id/signupButton"
+        android:text="Sign Up"
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

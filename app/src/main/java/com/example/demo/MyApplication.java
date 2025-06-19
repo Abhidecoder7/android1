@@ -1,4 +1,11 @@
 package com.example.demo;
 
-public class MyApplication {
+import android.app.Application;
+
+public class MyApplication extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        // ❌ Do NOT initialize CleverTap here
+    }
 }
